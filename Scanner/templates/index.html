@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to S.O.K Scanner</title>
+    <style>
+        body {
+            font-family: 'Roboto';
+            margin: 0;
+            padding: 20px;
+            background-color: #abdbde;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #5b706380;
+            padding: 150px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #222d26cc;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        textarea { /* Box of input */
+            height: 50px;
+            resize: none;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        #text-label { /* for "Enter a stream of characters"*/
+            font-weight:bolder;
+            font-size: 18px;
+            font-variant:small-caps;
+            color: #222d26cc;
+        }
+
+        .h1 { /* Title */
+            font-family: 'Roboto';
+            font-weight: 900;
+            color: #b77d72;
+            text-transform: uppercase;
+            background-image:linear-gradient(102deg, #487565cc, #222d26cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 40px;
+            margin: -100px 50px 50px 150px;
+        }
+
+        .desc { /* Sub Title */
+            font-size: 18px;
+            text-transform: uppercase;
+            margin: 0% 10% 5% 25%;
+            color: #222d26cc;
+        }
+
+        .btn { /* Analyze */
+            padding: 8px 10px;
+            text-transform: uppercase;
+            border: none;
+            background: #5b7063cc;
+            color: #ffffff;
+            cursor: pointer;
+            flood-color: #816e89; 
+        }
+
+        .btn:hover { /* Analyze hover*/
+            opacity: 0.7;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        .results {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: stretch;
+        }
+
+        .results div { /* rectangle of the whole results */
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            border-radius: 2px;
+            background: #5b70631a;
+        }
+
+        .results div span { /* Size of rectangle lexim */
+            padding: 2px 15px;
+            border-radius: 3px;
+        }
+
+        .results div .text { /* token rectangle */
+            min-width: 50%;
+            color: #f0fff0;
+            background-color: #222d26cc;
+        }
+
+        .results div .token { /* Output */
+            min-width: 30%;
+            text-align: center;
+            font-weight: normal;
+            color: #ffffff;
+            background-color: #5b7063cc;
+            border-radius: 15px;
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            margin: 0% 1% 1% 1%;
+            border-radius: 10px;
+            background: #5b7063cc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <span class="h1">Welcome to S.O.K Scanner</span>
+        <span class="desc">
+            Here you can check the type of your tokens
+        </span>
+        <br /> <!-- new line -->
+        <br />
+        <form method="post">
+            <label id="text-label" for="input-text">Enter a stream of characters :</label>
+            <br />
+            <br />
+            <textarea type="text" id="input-text" name="text">{{text}}</textarea>
+            <br />
+            <input class="btn" type="submit" value="Analyze">
+        </form>
+        {% if data %}
+        <div class="results">
+            <h2>Results:</h2>
+            <div class="results">
+                {% for item in data %}
+                <div>
+                    <span class="text">{{ item[0] }}</span>
+                    <span class="token">{{ item[1] }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <footer class="footer">
+        <p>Created By: Sara Sheariya | Ohood Balkhair | Khulud Alshanbri<br>
+    </footer>
+</body>
+
+</html>
